@@ -24,6 +24,7 @@ public static class AndroidStreamingAssets
 
 	public static void Extract()
 	{
+#if !UNITY_EDITOR && UNITY_ANDROID
 		string targetPath = Application.temporaryCachePath;
 		string result = System.IO.Path.Combine( Application.temporaryCachePath, "assets" );
 
@@ -78,5 +79,8 @@ public static class AndroidStreamingAssets
 		}
 
 		m_path = result;
+#else
+		m_path = Application.streamingAssetsPath;
+#endif
 	}
 }
